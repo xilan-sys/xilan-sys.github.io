@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hexo | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="tcp三次握手和四次挥手过程 三次握手  第一次，客户端发送初始序号x和syn&#x3D;1请求标志 第二次，服务器发送请求标志syn，发送确认标志ack，发送自己的序号seq&#x3D;y，发送客户端的确认序号ack&#x3D;x+1 第三次，客户端发送ack确认号，发送自己的序号seq&#x3D;1，发送对方的确认号ack&#x3D;y+1  四次挥手  第一次挥手  MySQL主从复制 主库发生更新事件被写入到binlog； 从库发起连接，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2020/05/27/%E8%BF%90%E7%BB%B4%E9%9D%A2%E8%AF%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="tcp三次握手和四次挥手过程 三次握手  第一次，客户端发送初始序号x和syn&#x3D;1请求标志 第二次，服务器发送请求标志syn，发送确认标志ack，发送自己的序号seq&#x3D;y，发送客户端的确认序号ack&#x3D;x+1 第三次，客户端发送ack确认号，发送自己的序号seq&#x3D;1，发送对方的确认号ack&#x3D;y+1  四次挥手  第一次挥手  MySQL主从复制 主库发生更新事件被写入到binlog； 从库发起连接，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/test.jpg">
+<meta property="article:published_time" content="2020-05-27T15:40:06.893Z">
+<meta property="article:modified_time" content="2020-06-01T11:52:36.643Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/test.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/05/27/%E8%BF%90%E7%BB%B4%E9%9D%A2%E8%AF%95/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-06-01 19:52:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/test.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">No title</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-05-27T15:40:06.893Z" title="Created 2020-05-27 23:40:06">2020-05-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-06-01T11:52:36.643Z" title="Updated 2020-06-01 19:52:36">2020-06-01</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>tcp三次握手和四次挥手过程</p>
+<p>三次握手</p>
+<ul>
+<li>第一次，客户端发送初始序号x和syn=1请求标志</li>
+<li>第二次，服务器发送请求标志syn，发送确认标志ack，发送自己的序号seq=y，发送客户端的确认序号ack=x+1</li>
+<li>第三次，客户端发送ack确认号，发送自己的序号seq=1，发送对方的确认号ack=y+1</li>
+</ul>
+<p>四次挥手</p>
+<ul>
+<li>第一次挥手</li>
+</ul>
+<h5 id="MySQL主从复制"><a href="#MySQL主从复制" class="headerlink" title="MySQL主从复制"></a>MySQL主从复制</h5><ul>
+<li>主库发生更新事件被写入到binlog；</li>
+<li>从库发起连接，连接到主库；</li>
+<li>此时主库创建一个binlog线程，把binlog的内容发送到从库；</li>
+<li>从库启动后，创建一个I/O线程，读取主库传来的binlog内容并写入到relay log中；</li>
+<li>还会创建一个SQL线程，从relay log 里面读取内容，从日志位置开始执行读取到的更新事件，将内容写入到slave的数据库中</li>
+</ul>
+<h5 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h5><ul>
+<li><h6 id="什么是nginx"><a href="#什么是nginx" class="headerlink" title="什么是nginx"></a>什么是nginx</h6><ul>
+<li>nginx是一个高性能的反向代理服务器，他是一个非常高效的反向代理、负载均衡，他可以处理2-3万并发连接数，官方检测能支持5万并发。</li>
+</ul>
+</li>
+<li><h6 id="为什么要用nginx"><a href="#为什么要用nginx" class="headerlink" title="为什么要用nginx"></a>为什么要用nginx</h6><ul>
+<li>跨平台、配置简单、反向代理、高并发连接：处理2-3万并发连接数，官方检测能支持5万并发，内存消耗小：开启10个nginx才占150M内存，nginx处理静态文件好，耗费内存少，而且nginx内置的健康坚持功能：如果有一个服务器宕机，会做一个健康检查，在发送的请求就不会发送到宕机的服务器了。重新将请求提交到其他的节点上。</li>
+<li>使用nginx的话还能：节省宽带，支持gzip压缩，可以添加浏览器本地缓存，稳定性高,宕机的概率非常小，接收用户请求是异步的。</li>
+</ul>
+</li>
+<li><h6 id="为什么nginx性能那么高"><a href="#为什么nginx性能那么高" class="headerlink" title="为什么nginx性能那么高"></a>为什么nginx性能那么高</h6><ul>
+<li>因为他的事件处理机制：异步非阻塞事件处理机制，运用epoll模型，提供了一个队列，排队解决</li>
+</ul>
+</li>
+<li><h6 id="nginx怎么处理请求的"><a href="#nginx怎么处理请求的" class="headerlink" title="nginx怎么处理请求的"></a>nginx怎么处理请求的</h6><ul>
+<li>nginx接受一个请求后，首先由listen和server_name指令匹配server模块，再匹配server模块里的location，location就是实际地址。</li>
+</ul>
+</li>
+<li><h6 id="什么是正向代理和反向代理"><a href="#什么是正向代理和反向代理" class="headerlink" title="什么是正向代理和反向代理"></a>什么是正向代理和反向代理</h6><ul>
+<li>正向代理就是一个人发送一个请求直接就到达了目标的服务器</li>
+<li>反向代理就是请求统一被nginx接收，nginx反向代理服务器接收到之后，按照一定的规则分发给了后端的业务处理服务器进行处理</li>
+</ul>
+</li>
+<li><p>使用“反向代理服务器的优点是什么“</p>
+<ul>
+<li>反向代理服务器可以隐藏源服务器的存在和特征，它充当互联网云和web服务器之间的中间层。这对于安全方面来说是很好的，特别是当使用web托管服务时。</li>
+</ul>
+</li>
+<li><h6 id="nginx的优缺点"><a href="#nginx的优缺点" class="headerlink" title="nginx的优缺点"></a>nginx的优缺点</h6><ul>
+<li>优点：<ul>
+<li>占用内存小，可实现高并发连接，处理响应快</li>
+<li>可实现http服务器、虚拟主机、方向代理、负载均衡</li>
+<li>nginx配置简单</li>
+<li>可以不暴露正式的服务器ip地址</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>动态处理差，nginx处理静态文件好，耗费内存少，但是处理动态页面效果不好，现在一般前端用nginx作为反向代理抗住压力。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何用nginx解决跨域</p>
+<ul>
+<li>使用nginx转发请求。把跨域的接口写成调本地的接口，然后将这些接口转发到真正的请求地址</li>
+</ul>
+</li>
+<li><p>限流怎么做的，算法是什么，（限制请求速度）</p>
+<ul>
+<li>nginx限流就是限制用户请求速度，防止服务器受不了</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2020/05/27/%E8%BF%90%E7%BB%B4%E9%9D%A2%E8%AF%95/">http://example.com/2020/05/27/%E8%BF%90%E7%BB%B4%E9%9D%A2%E8%AF%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/test.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2021/01/01/hello-world/"><img class="prev-cover" src="/img/test.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/tiger199"><i class="fa fa-car"></i><span>Mr·葛</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">黄沙万里觅封侯</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">MySQL主从复制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nginx"><span class="toc-number">2.</span> <span class="toc-text">nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFnginx"><span class="toc-number">2.1.</span> <span class="toc-text">什么是nginx</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8nginx"><span class="toc-number">2.2.</span> <span class="toc-text">为什么要用nginx</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88nginx%E6%80%A7%E8%83%BD%E9%82%A3%E4%B9%88%E9%AB%98"><span class="toc-number">2.3.</span> <span class="toc-text">为什么nginx性能那么高</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#nginx%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82%E7%9A%84"><span class="toc-number">2.4.</span> <span class="toc-text">nginx怎么处理请求的</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="toc-number">2.5.</span> <span class="toc-text">什么是正向代理和反向代理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#nginx%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">2.6.</span> <span class="toc-text">nginx的优缺点</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/01/01/%E5%A4%8D%E4%B9%A0/" title="bilibili"><img src="/img/test.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="bilibili"/></a><div class="content"><a class="title" href="/2021/01/01/%E5%A4%8D%E4%B9%A0/" title="bilibili">bilibili</a><time datetime="2021-01-01T04:46:17.812Z" title="Created 2021-01-01 12:46:17">2021-01-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/01/01/geqinggang/" title="skjhdasjkhdkas"><img src="/img/test.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="skjhdasjkhdkas"/></a><div class="content"><a class="title" href="/2021/01/01/geqinggang/" title="skjhdasjkhdkas">skjhdasjkhdkas</a><time datetime="2021-01-01T04:40:36.008Z" title="Created 2021-01-01 12:40:36">2021-01-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/01/01/hello-world/" title="Hello World"><img src="/img/test.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2021/01/01/hello-world/" title="Hello World">Hello World</a><time datetime="2021-01-01T03:54:23.813Z" title="Created 2021-01-01 11:54:23">2021-01-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/05/27/%E8%BF%90%E7%BB%B4%E9%9D%A2%E8%AF%95/" title="No title"><img src="/img/test.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/2020/05/27/%E8%BF%90%E7%BB%B4%E9%9D%A2%E8%AF%95/" title="No title">No title</a><time datetime="2020-05-27T15:40:06.893Z" title="Created 2020-05-27 23:40:06">2020-05-27</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
